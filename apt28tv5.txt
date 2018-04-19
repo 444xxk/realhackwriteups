@@ -1,0 +1,29 @@
+Initial Access & Compromission
+
+The attacker got his initial access the network on the 23rd January 2015 and explored it over multiple weeks.
+
+One of TV5Monde multimedia server (used by journalists to send content back) had its RDP port exposed to internet and was using default username/password. But this machine was not connected to the internal network, and was quickly classified as dead-end by the attacker.
+
+The attacker came back later on, this time, with a compromised third-party account to connect through the TV5Monde VPN before compromising it on the 6th February 2015 over a one week period, and discovered two machines (ROB1 & ROB2), after scanning its internal network, that were Windows machines managing the cameras.
+Creation of LocalAdministrator account.
+
+The attacker used one of these compromised machines (ROB2) to create a new Active Directory Administrator user (LocalAdministator) (11th February)
+Collection & Verification
+
+During the 16th February to 25th March 2015 period, the attacker searched (“telnet”, “ssh”, “video”, “compte”, “pass”, “VPN”, etc.) & collected data on the various internal platform such as the IT Internal Wiki and retrieved as much login and password information as possible and also spend the time to verify those information to make sure they were not expired or outdated.
+Successful access to the Wiki and data extraction
+
+The attacker compromised another administrator machine (Codenamed: ANKOU) which contains the Remote Access Control (RAT) which was used for the sabotage. Prior to this, the attacker also dropped njRAT as a decoy on the system but didn’t run it — ANSSI isn’t sure why.
+
+Social media accounts got compromised few hours before the sabotage of the broadcasting network.
+
+As we can see from the above information, the attacker was in the network for almost 3 months and carefully prepared his sabotage operation by verifying the collected information.
+D-Day
+Sabotage
+
+At 19:57, the attacker did his first damaging operation by faulty re-configuring all the IP configuration of the media encoded. This misconfiguration only gets enabled when the technical teams reboot the machines.
+
+At 20:58, the online presence is affected through social media accounts (YouTube, Facebook, Twitter) and the website of TV5Monde which is modified.
+
+At 21:48, the attacker runs a series of destructive commands (extracted from TACACS logs) to erase the firmwares from the switches and routers that results into the black screens — except for one new channel that was launched on the same day which was covering the attack from inside.
+

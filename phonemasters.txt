@@ -1,0 +1,17 @@
+The hack
+At 8:45 on the night of Dec. 21, just four days before Christmas, Cantrell went online. Using an ill-gotten password, he entered a Sprint computer, where he raided a database, copying more than 850 calling-card access codes and other files, court records in the case show.
+
+The Phonemasters often got passwords and other key information on companies in a low-tech approach called "Dumpster diving," raiding the trash bins of area phone firms for old technical manuals, phone directories and other company papers. This often allowed Cantrell to run one of his favorite ruses -- passing himself off as a company insider.
+
+"I'd call up and say, 'Hi, I'm Bill Edwards with systems administration.' ... I'd chat with them for a while, then I'd say 'We're doing some network checkups today. Can you log off of your computer, then tell me every character you're typing as you log back on?' A lot of people fell for that," Cantrell says.
+
+After hacking into the Sprint database that evening, Cantrell talked to another hacker, Corey Lindsley, over the phone. He'd "met" Lindsley, and another hacker, John Bosanac, in 1993 while surfing the murky world of hacker bulletin boards. Cantrell then sent the copied files to Lindsley, who was a student at the University of Pennsylvania in Philadelphia.
+
+Morris's equipment captured everything -- voice and data. It was an FBI first. "We're sitting in this place that looked liked a bomb pit, but the atmosphere was really exciting," says Morris. "We were ecstatic."
+
+As the days passed, the FBI wiretap generated stacks upon stacks of audiotapes and data transcripts. Some was just idle talk among friends, the occasional call to finalize dinner plans, lots of workaday chatter. But the incriminating evidence mounted. "It's great, you know. I really love fraud," joked Bosanac, a Californian who was musing with Cantrell about the various technical methods of using other people's cellular telephone accounts to place free calls. "Fraud is a beautiful thing."
+
+Family conversations even entered the investigation. On Jan. 7, for instance, Cantrell called his mother from a friend's house and asked her find an MCI manual on his shelf. He then asked her to read him a set of directions for accessing MCI's V-NET computer system. Mrs. Cantrell read the material but asked her son whether he was supposed to have the book, citing warnings that stated its contents were restricted to MCI employees. Cantrell just avoided his mother's question. The FBI data-tap captured every word.
+
+
+

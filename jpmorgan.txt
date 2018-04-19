@@ -1,0 +1,5 @@
+The attack against the bank began last spring, after hackers stole the login credentials for a JPMorgan employee, these people said. Still, the attack could have been stopped there.
+
+Most big banks use a double authentication scheme, known as two-factor authentication, which requires a second one-time password to gain access to a protected system. But JPMorgan’s security team had apparently neglected to upgrade one of its network servers with the dual password scheme, the people briefed on the matter said. That left the bank vulnerable to intrusion.
+
+

@@ -1,0 +1,8 @@
+The hackers from Impact Team told Motherboard, "We worked hard to make fully undetectable attack, then got in and found nothing to bypass….Nobody was watching. No security. Only thing was segmented network. You could use Pass1234 from the internet to VPN to root on all servers."
+
+In an initial interview after the breach was first reported in July, Avid Life Media CEO Noel Biderman suggested the perpetrator may have been a former contractor or someone else who had legitimate access to the company’s networks at one time.
+
+"We’re on the doorstep of [confirming] who we believe is the culprit,..." Biderman told KrebsonSecurity last month. "I’ve got their profile right in front of me, all their work credentials. It was definitely a person here that was not an employee but certainly had touched our technical services."
+
+
+

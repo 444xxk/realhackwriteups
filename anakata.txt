@@ -1,0 +1,12 @@
+https://www.youtube.com/watch?v=SjtyifWTqmc
+
+
+TL;DR 
+
+
+- Emulating IBM z/OS with Hercules 
+- 0 day research 
+- Exploit 
+
+
+

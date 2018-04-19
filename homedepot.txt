@@ -1,0 +1,11 @@
+The attackers were able to gain access to one of Home Depot’s vendor environments by using a third-party vendor’s logon credentials. Then they 
+exploited a zero-day vulnerability in Windows, which allowed them to pivot from the 
+vendor-specific environment to the Home Depot corporate environment.
+Once they were in the Home Depot network, they were able install memory scraping 
+malware on over 7,500 self -checkout POS terminals (Smith, 2014). This malware was 
+able to grab 56 million credit and debit cards. The malware was also able to capture 
+53  million email addresses (Winter, 2014). The stolen payment cards were used to put up for 
+sale and bought by carders. The stolen email addresses were helpful in putting together 
+large phishing campaigns. 
+
+

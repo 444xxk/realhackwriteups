@@ -1,0 +1,96 @@
+https://medium.com/alphasoc/alexseys-ttps-1204d9050551
+
+TL;DR
+
+Belan’s observed offensive traits were as follows:
+
+    He identified peripheral web servers via Google and Linkedin searches
+    Used known WordPress flaws and custom bugs to compromise PHP sites
+    Linux authentication mechanisms were altered to capture credentials
+    Nmap was used to identify exposed network services internally
+    Corporate Wikis revealed administrative workflows and VPN details
+    Ticketing, bug tracking, and version control systems provided secrets (e.g. cryptographic keys, seeds, hashes, credentials, and source code)
+    Cookies from weak non-production instances (e.g. staging) were valid in production as cryptographic materials were the same — bypassing 2FA
+    Client certificates (exposed by email, ticketing, or lifted from filesystems) were combined with known credentials to access corporate VPNs
+    Engineering credentials were used to commit backdoors to version control which were self-approved and later deployed into production
+
+Email addresses and password hashes were amassed with each compromise. Cracked credentials were used to target further victims via exposed mail services (e.g. Outlook on the Web or G Suite), and the exploratory process was repeated to gain privileged network access via VPN or similar means.
+
+Defensive controls checklist:
+
+    Segregate risky Internet-exposed servers (e.g. third-party PHP sites)
+    Do not leave secrets in your Wiki, ticketing, or bug tracking systems, or send sensitive material over email (e.g. credentials, certificates, or keys)
+    Don’t re-use cryptographic seeds, keys, or credentials across production and non-production environments (e.g. development or staging)
+    Compromised servers made odd DNS requests (e.g. resolving m4g.ru). Use a monitoring tool such as DNS Analytics for Splunk to flag anomalies
+    Software certificates are an insufficient second factor. Use a real 2FA solution such as Duo and consider hardware tokens to protect private keys via FIPS 201–1 and other standards, as supported by the YubiKey 4
+
+    Proper segmentation, enforcement of a sensible policy around the safe transmission of secrets, and close monitoring of production systems nullify this threat.
+
+Technical Details
+
+The marketing department of Belan’s first known victim ran a vulnerable WordPress server from a branch office. The server sat on the corporate WAN and could access internal systems: it wasn’t segregated or placed in a DMZ.
+
+Belan found the server through a Google search and exploited it via CVE-2011–4106. Next, he downloaded tools via wget from m4g.ru and elevated privileges via CVE-2010–3856.
+
+The following steps were undertaken over a five day period:
+
+    He replaced the PHP authentication mechanism (l10n.php) to capture credentials of corporate users interacting with the WordPress site
+    Ran Nmap and discovered the internal Wiki
+    Captured a handful of valid credentials via WordPress
+    Authenticated with the Wiki using captured user credentials
+    Came to understand the administrative procedures via the Wiki
+    Failed to authenticate with the administrative portal (2FA was required)
+    Identified a staging instance of the administrative portal that didn’t require 2FA. Authenticated, and subsequently identified directory traversal and arbitrary file upload flaws through manual testing
+    Found that cookies generated in staging were valid in production, and modified a staging cookie to access the production instance of the administrative portal (bypassing 2FA)
+    Gained privileged access to the administrative portal server via the known web application flaws, and a obtained a MySQL credential that provided access to customer data within the production environment
+    Ran mysqldump against the production database, creating 1.txt
+    Compressed and attempted to SCP 1.tgz to a masterhost.ru shell server using directory structures containing mnogo.mobi and m4g.ru domains
+    The SCP process failed, and so 1.tgz was split into chunks and exfiltrated by placing them onto an NFS share used to serve static content in the production web environment
+
+Use of Linkedin to Target Peripheral Systems
+
+Belan’s second known victim was notified by the FBI of a breach. We identified an engineering account that had accessed the corporate VPN from Russian IP space, and subsequently discovered a compromised web server running on the engineer’s iMac in the kitchen of his home in Santa Clara.
+
+The web server was a Linux VM running within the iMac via Parallels. Belan had found the server via the engineer’s own public Linkedin profile, e.g.
+Personal websites listed in a user’s Linkedin profile
+
+The Linux VM hosted a handful of PHP sites. Belan worked to remotely compromise the Linux VM, host system, and finally his target, as follows:
+
+    Tested each PHP site by hand to identify potential weaknesses
+    Successfully identified and exploited a custom arbitrary file upload flaw
+    Elevated privileges to root via CVE-2010–3856 (as before)
+    Altered Linux and PHP authentication mechanisms to capture credentials
+    Obtained and cracked local user password hashes from /etc/shadow
+    Authenticated with the Linux VM via SSH using a valid credential
+    Launched a brute-force SSH password grinding attack from the guest Linux VM against the host operating system (running MacOS X)
+    Used tools to clear utmp and wtmp log entries within the Linux VM
+    Successfully authenticated with the host operating system via SSH using a permutation of a known user credential
+    Obtained corporate VPN configuration details from the host operating system, including the gateway details, client certificate, and private key
+    Combined the VPN settings with known credentials to authenticate with, and access the corporate VPN as the engineer himself
+
+Application, database, and infrastructure logs within the victim environment were rolling (overwriting entries after 10–14 days). As such, our ability to investigate this compromise was limited. The facts however are as follows:
+
+    Belan maintained corporate VPN access for four months
+    The customer database was obtained from the production environment
+
+Lack of 2FA + The Cloud =
+
+By mid-2013, Belan had amassed 200 million credentials (including email addresses, passwords, but also answers to security questions). Organizations embracing cloud services but not 2FA were soft targets.
+
+A third victim was breached through the following steps:
+
+    Use of a valid credential (user/pass) to authenticate with Google Mail
+    Access to an Internet-based JIRA instance granted via OpenID
+    Issues in JIRA revealed a legacy Internet-based Subversion (SVN) server
+    Already known and valid credentials were used to access the SVN server
+    Local privileges were elevated and engineering password hashes were obtained from /etc/shadow and other files within version control
+    Internet-exposed Git production instance accessed via cracked credentials
+    JSP shell committed into Git, self-approved, and queued for deployment
+    An unwitting engineer later deployed the code into production
+    Belan read the production database environment variables from an application server via the JSP shell he had implanted
+    Ran mysqldump against the production database, creating 1.txt
+    Compressed, split, and exfiltrated 1.tgz via the application server
+
+
+
+
